@@ -7,6 +7,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { ReturnButton } from '../../components/ReturnButton';
 import { TextField } from '@mui/material';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import { Toaster, toast } from 'react-hot-toast';
 
 export function EditList() {
 	const navigate = useNavigate();
@@ -20,8 +23,6 @@ export function EditList() {
 		description: '',
 		movies: [],
 	});
-
-	const [movie, setMovie] = useState();
 
 	function handleChange(event) {
 		setForm({ ...form, [event.target.name]: event.target.value });
@@ -58,12 +59,15 @@ export function EditList() {
 		}
 	}
 
-	console.log(form);
-
 	return loading ? (
-		<h1>Carregando...</h1>
+		<Box sx={{ width: '100%' }}>
+			<LinearProgress />
+		</Box>
 	) : (
 		<>
+			<div>
+				<Toaster />
+			</div>
 			<ReturnButton></ReturnButton>
 			<h1>Edit your List</h1>
 			<form on onSubmit={handleSubmit}>
@@ -103,6 +107,7 @@ export function EditList() {
 												newMovies.splice(i, 1);
 												return { ...prevState, movies: newMovies };
 											});
+											toast('Deleted!', { icon: '🗑️' });
 										}}
 										size='small'
 										variant='outlined'

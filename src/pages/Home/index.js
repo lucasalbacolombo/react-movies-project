@@ -2,6 +2,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -32,21 +34,26 @@ export function Home() {
 	console.log(movies);
 
 	return loading ? (
-		<h1>Carregando...</h1>
+		<Box sx={{ width: '100%' }}>
+			<LinearProgress />
+		</Box>
 	) : (
 		<>
 			<h1>The Movie Database</h1>
 
-			<Link to={'/addMovie'}>
+			<Link to={'/addMovie'} style={{ textDecoration: 'none' }}>
 				<Button variant='contained' size='large'>
-					Add a Movie!
+					Create a new list
 				</Button>
 			</Link>
 
 			<h3>Your Movie Lists</h3>
 			{movies.map((currentMovie) => {
 				return (
-					<Link to={`/details/${currentMovie._id}`}>
+					<Link
+						to={`/details/${currentMovie._id}`}
+						style={{ textDecoration: 'none' }}
+					>
 						<Card sx={{ minWidth: 275 }}>
 							<CardContent>
 								<Typography variant='h5' component='div'>

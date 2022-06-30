@@ -9,6 +9,7 @@ import { ReturnButton } from '../../components/ReturnButton';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 
 export function AddMovie() {
 	const navigate = useNavigate();
@@ -30,6 +31,7 @@ export function AddMovie() {
 				movies: [...prevState.movies, event.target.value],
 			};
 		});
+		toast.success('Added to your list!');
 	}
 
 	const [movies, setMovies] = useState([]);
@@ -61,10 +63,11 @@ export function AddMovie() {
 		}
 	}
 
-	console.log(form);
-
 	return (
 		<>
+			<div>
+				<Toaster />
+			</div>
 			<ReturnButton></ReturnButton>
 			<h1>Create a new list!</h1>
 			<form onSubmit={handleSubmit}>

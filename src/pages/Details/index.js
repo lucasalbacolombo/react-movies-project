@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import { ReturnButton } from '../../components/ReturnButton';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export function Details() {
 	const { id } = useParams();
@@ -47,7 +49,9 @@ export function Details() {
 
 	console.log(movie);
 	return loading ? (
-		<h1>Carregando...</h1>
+		<Box sx={{ width: '100%' }}>
+			<LinearProgress />
+		</Box>
 	) : (
 		<>
 			<ReturnButton></ReturnButton>
@@ -62,7 +66,6 @@ export function Details() {
 					<Typography variant='h5' component='div'>
 						<p>Your movies:</p>
 					</Typography>
-
 					{movie.movies.map((currentElement) => {
 						return (
 							<Typography variant='h5' component='div'>
@@ -72,7 +75,7 @@ export function Details() {
 					})}
 				</CardContent>
 				<CardActions>
-					<Link to={`/details/edit/${id}`}>
+					<Link to={`/details/edit/${id}`} style={{ textDecoration: 'none' }}>
 						<Button size='small' variant='contained'>
 							Edit List
 						</Button>
