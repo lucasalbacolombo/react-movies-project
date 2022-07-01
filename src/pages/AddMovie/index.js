@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
+import CardMedia from '@mui/material/CardMedia';
 
 export function AddMovie() {
 	const navigate = useNavigate();
@@ -19,6 +20,8 @@ export function AddMovie() {
 		description: '',
 		movies: [],
 	});
+
+	const [movies, setMovies] = useState([]);
 
 	function handleChange(event) {
 		setForm({ ...form, [event.target.name]: event.target.value });
@@ -33,8 +36,6 @@ export function AddMovie() {
 		});
 		toast.success('Added to your list!');
 	}
-
-	const [movies, setMovies] = useState([]);
 
 	useEffect(() => {
 		async function fetchMovies() {
@@ -63,13 +64,18 @@ export function AddMovie() {
 		}
 	}
 
+	console.log(form);
+
 	return (
 		<>
 			<div>
 				<Toaster />
 			</div>
+
 			<ReturnButton></ReturnButton>
+
 			<h1>Create a new list!</h1>
+
 			<form onSubmit={handleSubmit}>
 				<TextField
 					id='owner'
@@ -78,20 +84,35 @@ export function AddMovie() {
 					name='owner'
 					value={form.owner}
 					onChange={handleChange}
+					style={{ margin: '5px' }}
 				/>
 				<TextField
 					id='description'
-					label='Description'
+					label='List Description'
 					variant='outlined'
 					name='description'
 					value={form.description}
 					onChange={handleChange}
+					style={{ margin: '5px' }}
 				/>
 
 				{movies.map((currentMovie) => {
 					return (
 						<>
-							<Card sx={{ minWidth: 275 }}>
+							<Card
+								sx={{ minWidth: 275 }}
+								style={{
+									margin: '5px',
+									marginBottom: '20px',
+									backgroundColor: '#F2EDED',
+								}}
+							>
+								<CardMedia
+									component='img'
+									height='140'
+									image={`https://image.tmdb.org/t/p/original/${currentMovie.poster_path}`}
+									alt='green iguana'
+								/>
 								<CardContent>
 									<Typography variant='h5' component='div'>
 										{currentMovie.original_title}
@@ -111,7 +132,7 @@ export function AddMovie() {
 						</>
 					);
 				})}
-				<Button variant='contained' type='submit'>
+				<Button variant='contained' type='submit' style={{ margin: '5px' }}>
 					Submit your list
 				</Button>
 			</form>

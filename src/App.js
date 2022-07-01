@@ -4,10 +4,11 @@ import { Details } from './pages/Details';
 import { AddMovie } from './pages/AddMovie';
 import { EditList } from './pages/EditList';
 import { NotFound } from './pages/NotFound';
+import style from './style.module.css';
 
 function App() {
 	return (
-		<>
+		<div className={style.main}>
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/addMovie' element={<AddMovie />} />
@@ -15,7 +16,7 @@ function App() {
 				<Route path='/details/edit/:id' element={<EditList />} />
 				<Route path='*' element={<NotFound />} />
 			</Routes>
-		</>
+		</div>
 	);
 }
 

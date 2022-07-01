@@ -5,9 +5,7 @@ export function ReturnButton() {
 	return (
 		<>
 			<Link to={'/'} style={{ textDecoration: 'none' }}>
-				<Button variant='contained' size='large'>
-					Return Home
-				</Button>
+				<Button variant='contained'>Return Home</Button>
 			</Link>
 		</>
 	);

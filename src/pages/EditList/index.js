@@ -88,12 +88,23 @@ export function EditList() {
 					onChange={handleChange}
 				/>
 
-				<Card sx={{ minWidth: 275 }}>
+				<Card
+					sx={{ minWidth: 275 }}
+					style={{
+						backgroundColor: '#F5FAFA',
+						marginTop: '15px',
+						marginBottom: '15px',
+					}}
+				>
 					<CardContent>
 						<Typography variant='h5' component='div'>
 							{form.owner}
 						</Typography>
-						<Typography variant='h5' component='div'>
+						<Typography
+							variant='h5'
+							component='div'
+							style={{ marginBottom: '20px' }}
+						>
 							{form.description}
 						</Typography>
 						{form.movies.map((currentElement, i) => {
@@ -112,6 +123,9 @@ export function EditList() {
 										size='small'
 										variant='outlined'
 										color='error'
+										style={{
+											marginLeft: '10px',
+										}}
 									>
 										Delete Movie
 									</Button>

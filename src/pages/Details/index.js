@@ -55,16 +55,21 @@ export function Details() {
 	) : (
 		<>
 			<ReturnButton></ReturnButton>
-			<Card sx={{ minWidth: 275 }}>
+			<Card
+				sx={{ minWidth: 275 }}
+				style={{ backgroundColor: '#F5FAFA', marginTop: '15px' }}
+			>
 				<CardContent>
 					<Typography variant='h5' component='div'>
-						{movie.owner}
+						<strong> {movie.owner} </strong>
 					</Typography>
-					<Typography variant='h5' component='div'>
-						{movie.description}
+					<Typography variant='h6' component='div'>
+						<strong>{movie.description}</strong>
 					</Typography>
-					<Typography variant='h5' component='div'>
-						<p>Your movies:</p>
+					<Typography variant='h6' component='div'>
+						<strong>
+							<p>Your movies:</p>
+						</strong>
 					</Typography>
 					{movie.movies.map((currentElement) => {
 						return (
@@ -76,15 +81,15 @@ export function Details() {
 				</CardContent>
 				<CardActions>
 					<Link to={`/details/edit/${id}`} style={{ textDecoration: 'none' }}>
-						<Button size='small' variant='contained'>
+						<Button variant='contained' style={{ margin: '10px' }}>
 							Edit List
 						</Button>
 					</Link>
 					<Button
 						onClick={handleDelete}
-						size='small'
 						variant='outlined'
 						color='error'
+						style={{ margin: '10px' }}
 					>
 						Delete List
 					</Button>
